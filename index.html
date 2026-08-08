@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Project page for Fraud is not just rarity: A causal prototype attention approach to realistic synthetic oversampling." />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Fraud is not just rarity</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --surface: rgba(255,255,255,.84);
+      --surface-strong: #ffffff;
+      --ink: #111827;
+      --muted: #64748b;
+      --line: #e5e7eb;
+      --accent: #e5484d;
+      --accent-2: #f59e0b;
+      --navy: #0b1020;
+      --blue: #3457d5;
+      --shadow: 0 20px 60px rgba(15,23,42,.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 5%, rgba(229,72,77,.09), transparent 31rem),
+        radial-gradient(circle at 88% 18%, rgba(52,87,213,.08), transparent 34rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid rgba(226,232,240,.8);
+      background: rgba(247,248,251,.82);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: flex; gap: 11px; align-items: center; font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+    .brand-mark {
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px;
+      color: #fff; background: linear-gradient(135deg, var(--accent), #fb7185); box-shadow: 0 9px 26px rgba(229,72,77,.22);
+      font-size: 14px;
+      overflow: hidden;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: #475569; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .hero { padding: 94px 0 58px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px;
+      padding: 7px 12px; background: rgba(255,255,255,.72); color: #475569; font-size: 13px; font-weight: 700;
+      box-shadow: 0 8px 30px rgba(15,23,42,.04);
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(229,72,77,.09); }
+    h1 {
+      max-width: 1000px; margin: 24px auto 18px; font-size: clamp(44px, 7vw, 82px); line-height: .98;
+      letter-spacing: -.055em; font-weight: 850;
+    }
+    .hero .subtitle {
+      max-width: 820px; margin: 0 auto; font-size: clamp(18px, 2.3vw, 24px); color: #536174; line-height: 1.45;
+    }
+    .authors { margin-top: 27px; font-size: 16px; color: #334155; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .authors a { color: #334155; text-decoration: none; font-weight: 750; border-bottom: 1px solid transparent; transition: color .18s ease, border-color .18s ease; }
+    .authors a:hover { color: var(--accent); border-color: currentColor; }
+    .author-sep { color: #a0a9b7; }
+    .affiliation { margin-top: 6px; color: #7b8798; font-size: 14px; }
+    .actions { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 18px;
+      border: 1px solid #d9dee8; border-radius: 13px; text-decoration: none; font-weight: 750; font-size: 14px;
+      background: #fff; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(15,23,42,.08); border-color: #cbd5e1; }
+    .btn.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn svg { width: 17px; height: 17px; }
+
+    .hero-card {
+      margin: 56px auto 0; max-width: 1060px; border-radius: 30px; overflow: hidden; position: relative;
+      background: var(--navy); color: white; box-shadow: 0 38px 90px rgba(15,23,42,.20); text-align: left;
+    }
+    .hero-card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 80% 20%, rgba(229,72,77,.26), transparent 26rem), radial-gradient(circle at 10% 100%, rgba(52,87,213,.24), transparent 26rem);
+    }
+    .hero-card-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.12fr .88fr; gap: 36px; padding: 52px; align-items: center; }
+    .hero-card h2 { font-size: clamp(29px, 4vw, 44px); line-height: 1.05; letter-spacing: -.035em; margin: 0 0 18px; }
+    .hero-card p { color: #c5cede; margin: 0; max-width: 600px; }
+    .hero-metrics { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .metric-dark { padding: 21px; border-radius: 18px; border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.06); }
+    .metric-dark .value { display: block; font-size: 32px; font-weight: 850; letter-spacing: -.035em; }
+    .metric-dark .label { display: block; margin-top: 2px; color: #aab6ca; font-size: 13px; }
+
+    section { padding: 88px 0; }
+    .section-head { max-width: 720px; margin-bottom: 34px; }
+    .kicker { font-size: 12px; font-weight: 850; color: var(--accent); text-transform: uppercase; letter-spacing: .13em; }
+    h2.section-title { margin: 8px 0 12px; font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -.04em; }
+    .section-lede { margin: 0; color: var(--muted); font-size: 17px; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .feature {
+      padding: 28px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: 0 12px 40px rgba(15,23,42,.035);
+    }
+    .feature-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; margin-bottom: 22px; background: #fff1f2; color: var(--accent); }
+    .feature-icon.blue { color: var(--blue); background: #eef2ff; }
+    .feature-icon.amber { color: #b45309; background: #fffbeb; }
+    .feature h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -.015em; }
+    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .method-shell {
+      background: var(--surface-strong); border: 1px solid var(--line); border-radius: 30px; padding: 30px; box-shadow: var(--shadow);
+    }
+    .method-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 40px; align-items: center; }
+    .method-copy { padding: 12px; }
+    .method-copy h3 { margin: 0 0 12px; font-size: 29px; letter-spacing: -.035em; }
+    .method-copy p { color: var(--muted); margin: 0 0 18px; }
+    .bullets { display: grid; gap: 12px; }
+    .bullet { display: flex; gap: 12px; align-items: flex-start; }
+    .bullet b { display: block; margin-bottom: 2px; }
+    .bullet span { color: var(--muted); font-size: 14px; }
+    .check { flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; margin-top: 2px; background: #fff1f2; color: var(--accent); font-size: 12px; font-weight: 900; }
+    .figure-card { background: #fbfcfe; border: 1px solid #edf0f5; border-radius: 22px; padding: 22px; }
+    .figure-card img { width: 100%; border-radius: 14px; }
+    .figure-card figcaption { color: #7b8798; font-size: 12px; margin-top: 12px; }
+
+    .zoomable-figure { position: relative; overflow: visible; cursor: zoom-in; }
+    .zoomable-figure > img { transition: transform .24s ease, box-shadow .24s ease; }
+    .zoomable-figure .hover-hint {
+      position: absolute; top: 14px; right: 14px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(11,16,32,.78); color: #fff; font-size: 11px; font-weight: 700;
+      box-shadow: 0 10px 28px rgba(15,23,42,.16);
+      backdrop-filter: blur(8px);
+    }
+    .zoomable-figure .hover-hint svg { width: 13px; height: 13px; }
+    .zoom-preview {
+      position: fixed; left: 50%; top: 50%; z-index: 120;
+      width: min(1180px, 92vw); max-height: 88vh;
+      padding: 14px; border-radius: 22px; border: 1px solid #dbe3ee;
+      background: rgba(255,255,255,.98); box-shadow: 0 28px 80px rgba(15,23,42,.30);
+      transform: translate(-50%, -50%) scale(.96);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+    }
+    .zoom-preview img {
+      width: 100%; max-height: calc(88vh - 28px); object-fit: contain; border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    }
+    .zoomable-figure:hover .zoom-preview,
+    .zoomable-figure:focus-within .zoom-preview {
+      opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1);
+    }
+    .zoomable-figure:hover > img,
+    .zoomable-figure:focus-within > img { transform: scale(1.015); }
+
+    .dataset-strip { margin-top: 18px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .dataset-stat { border: 1px solid var(--line); background: rgba(255,255,255,.7); padding: 22px; border-radius: 18px; }
+    .dataset-stat strong { font-size: 25px; letter-spacing: -.03em; display: block; }
+    .dataset-stat span { color: var(--muted); font-size: 13px; }
+
+    .results { background: #0c1222; color: #f8fafc; position: relative; overflow: hidden; }
+    .results::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 8% 12%, rgba(52,87,213,.24), transparent 30rem), radial-gradient(circle at 88% 78%, rgba(229,72,77,.20), transparent 31rem); pointer-events: none; }
+    .results .wrap { position: relative; z-index: 1; }
+    .results .kicker { color: #fb7185; }
+    .results .section-lede { color: #aeb9cb; }
+    .metric-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 36px 0 22px; }
+    .metric-card { border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 24px; background: rgba(255,255,255,.055); }
+    .metric-card strong { display: block; font-size: clamp(30px, 4vw, 43px); letter-spacing: -.045em; }
+    .metric-card span { font-size: 13px; color: #aeb9cb; }
+    .metric-card.highlight { background: linear-gradient(145deg, rgba(229,72,77,.25), rgba(229,72,77,.07)); border-color: rgba(251,113,133,.35); }
+    .result-note { color: #8794aa; font-size: 13px; margin-bottom: 34px; }
+
+    .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 30px; }
+    .result-figure { background: #fff; border-radius: 22px; padding: 16px; color: var(--ink); }
+    .result-figure img { width: 100%; border-radius: 12px; }
+    .result-figure p { margin: 12px 5px 2px; font-size: 13px; color: #64748b; }
+    .cluster-slot { min-height: 360px; border: 2px dashed #cbd5e1; border-radius: 16px; display: grid; place-items: center; padding: 28px; text-align: center; background: repeating-linear-gradient(135deg,#f8fafc,#f8fafc 14px,#f1f5f9 14px,#f1f5f9 28px); }
+    .cluster-slot-inner { max-width: 360px; }
+    .cluster-slot-icon { width: 54px; height: 54px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 16px; background: #fff; border: 1px solid #e2e8f0; color: #64748b; box-shadow: 0 8px 22px rgba(15,23,42,.06); }
+    .cluster-slot strong { display: block; font-size: 17px; color: #334155; }
+    .cluster-slot small { display: block; margin-top: 7px; color: #7b8798; line-height: 1.5; }
+    .cluster-slot code { font-size: 12px; background: #fff; border: 1px solid #e2e8f0; border-radius: 7px; padding: 3px 6px; }
+
+    .table-card { margin-top: 18px; overflow-x: auto; border: 1px solid rgba(255,255,255,.12); border-radius: 20px; background: rgba(255,255,255,.04); }
+    table { width: 100%; border-collapse: collapse; min-width: 710px; }
+    th, td { padding: 15px 18px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.08); }
+    th { color: #9eabc0; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    td { font-size: 14px; }
+    tbody tr:last-child td { border-bottom: 0; }
+    .best { color: #fda4af; font-weight: 800; }
+
+    .takeaway {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: center; padding: 42px; border-radius: 30px;
+      background: linear-gradient(135deg,#fff 0%,#fff7f7 100%); border: 1px solid #f1d9dc; box-shadow: var(--shadow);
+    }
+    .takeaway-quote { font-size: clamp(34px, 5vw, 59px); line-height: 1; letter-spacing: -.05em; font-weight: 850; }
+    .takeaway-quote em { color: var(--accent); font-style: normal; }
+    .takeaway-copy p { color: var(--muted); font-size: 16px; }
+    .takeaway-copy p:last-child { margin-bottom: 0; }
+
+    .citation-box { border: 1px solid var(--line); border-radius: 24px; background: #fff; overflow: hidden; box-shadow: var(--shadow); }
+    .citation-top { padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); }
+    .citation-top strong { font-size: 15px; }
+    .copy-btn { border: 1px solid var(--line); background: #f8fafc; border-radius: 10px; padding: 8px 12px; font: inherit; font-size: 12px; font-weight: 750; cursor: pointer; }
+    pre { margin: 0; padding: 24px; overflow-x: auto; color: #334155; font: 13px/1.7 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; white-space: pre-wrap; }
+
+    footer { padding: 38px 0 46px; color: #8793a5; font-size: 13px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 26px; flex-wrap: wrap; align-items: center; }
+    .footer-copy { display: grid; gap: 4px; }
+    .lab-links { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .lab-logo-link { min-height: 58px; display: flex; align-items: center; gap: 10px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 14px; background: #fff; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+    .lab-logo-link:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15,23,42,.07); }
+    .lab-logo-link img { width: 44px; height: 44px; object-fit: contain; }
+    .lab-logo-link .lab-text { display: grid; line-height: 1.15; }
+    .lab-logo-link .lab-text strong { color: #334155; font-size: 12px; }
+    .lab-logo-link .lab-text span { color: #8793a5; font-size: 10px; margin-top: 3px; }
+    .mfs-btn { min-height: 58px; padding: 0 16px; border-radius: 14px; background: var(--navy); color: #fff; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 800; font-size: 12px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 72px; }
+      .hero-card-inner, .method-grid, .takeaway { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .metric-row, .dataset-strip { grid-template-columns: repeat(2,1fr); }
+      .results-grid { grid-template-columns: 1fr; }
+      .cluster-slot { min-height: 300px; }
+      .hero-card-inner { padding: 38px 28px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1160px); }
+      h1 { font-size: 48px; }
+      section { padding: 68px 0; }
+      .metric-row, .dataset-strip, .hero-metrics { grid-template-columns: 1fr; }
+      .method-shell, .takeaway { padding: 22px; border-radius: 22px; }
+      .hero-card { border-radius: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="CPAC home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 34 34" width="24" height="24" fill="none">
+            <circle cx="10" cy="11" r="3.2" fill="#7dd3fc"/>
+            <circle cx="24" cy="23" r="3.2" fill="#fb7185"/>
+            <path d="M8 25L26 7" stroke="rgba(255,255,255,.92)" stroke-width="2.3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Research Paper</span>
+      </a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#approach">Approach</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero wrap">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Knowledge-Based Systems · 2026</div>
+      <h1>Fraud is not<br>just rarity.</h1>
+      <p class="subtitle">A causal prototype attention approach to realistic synthetic oversampling.</p>
+      <div class="authors">
+        <!-- Replace these four placeholder URLs with the authors' personal pages. -->
+        <a href="https://claudiunderthehood.github.io" target="_blank" rel="noopener">Claudio Giusti</a><span class="author-sep">·</span>
+        <a href="https://www.dmi.unict.it/lguarnera/" target="_blank" rel="noopener">Luca Guarnera</a><span class="author-sep">·</span>
+        <a href="https://mirkocasu.github.io" target="_blank" rel="noopener">Mirko Casu</a><span class="author-sep">·</span>
+        <a href="https://www.dmi.unict.it/~battiato/" target="_blank" rel="noopener">Sebastiano Battiato</a>
+      </div>
+      <div class="affiliation">Department of Mathematics and Computer Science · University of Catania</div>
+      <div class="actions">
+        <a class="btn accent" href="https://www.sciencedirect.com/science/article/pii/S0950705126013201?via%3Dihub" target="_blank" rel="noopener" aria-label="Open paper PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5"/><path d="M8.5 16.5h7M8.5 13h7"/></svg> Paper PDF
+        </a>
+        <a class="btn" href="https://doi.org/10.1016/j.knosys.2026.116594" target="_blank" rel="noopener" aria-label="Open DOI">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M10.5 13.5l3-3"/><path d="M7.7 16.3l-1.4 1.4a3.8 3.8 0 01-5.4-5.4l3-3a3.8 3.8 0 015.4 0" transform="translate(3 0)"/><path d="M14.7 7.7l1.4-1.4a3.8 3.8 0 015.4 5.4l-3 3a3.8 3.8 0 01-5.4 0" transform="translate(-3 0)"/></svg> DOI
+        </a>
+        <a class="btn primary" href="https://github.com/claudiunderthehood/VAEGAN-CPAC" target="_blank" rel="noopener" aria-label="Open source code on GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.41-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.18a10.99 10.99 0 015.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.17v3.22c0 .31.21.67.8.56A11.5 11.5 0 0012 .7z"/></svg> Code on GitHub
+        </a>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="hero-card-inner">
+          <div>
+            <h2>Move beyond “generate more frauds”.</h2>
+            <p>Instead of treating fraud detection only as a minority-class augmentation problem, we use classifier-guided latent shaping to make the representation itself more discriminative and interpretable.</p>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-dark"><span class="value">93.74%</span><span class="label">F1-score</span></div>
+            <div class="metric-dark"><span class="value">92.85%</span><span class="label">Recall</span></div>
+            <div class="metric-dark"><span class="value">98.47%</span><span class="label">AUC-ROC</span></div>
+            <div class="metric-dark"><span class="value">94.67%</span><span class="label">Precision</span></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="problem">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">The problem</div>
+          <h2 class="section-title">Rare does not automatically mean well represented.</h2>
+          <p class="section-lede">Credit-card fraud is extremely imbalanced. Classical oversampling can add minority examples without necessarily learning what separates fraudulent transactions from normal ones.</p>
+        </div>
+        <div class="grid-3">
+          <article class="feature reveal">
+            <div class="feature-icon">01</div>
+            <h3>Extreme imbalance</h3>
+            <p>The benchmark contains 284,807 transactions, but only 492 frauds, approximately 0.17% of the data.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon blue">02</div>
+            <h3>Poor latent separation</h3>
+            <p>Minority-only generative training can concentrate synthetic samples in narrow latent regions and fail to model the relationship with the majority class.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="feature-icon amber">03</div>
+            <h3>Overconfidence risk</h3>
+            <p>Good-looking synthetic frauds can still encourage brittle or overconfident downstream classifiers when representation geometry remains weak.</p>
+          </article>
+        </div>
+        <div class="dataset-strip reveal">
+          <div class="dataset-stat"><strong>284,807</strong><span>Total transactions</span></div>
+          <div class="dataset-stat"><strong>492</strong><span>Fraudulent transactions</span></div>
+          <div class="dataset-stat"><strong>0.17%</strong><span>Fraud rate</span></div>
+          <div class="dataset-stat"><strong>80 / 10 / 10</strong><span>Train / validation / test split</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Our approach</div>
+          <h2 class="section-title">Shape the latent space with CPAC.</h2>
+          <p class="section-lede">The Causal Prototype Attention Classifier combines class prototypes with feature-wise attention, and is coupled to the VAE-GAN encoder so supervised feedback influences the representation learned from both classes.</p>
+        </div>
+
+        <div class="method-shell reveal">
+          <div class="method-grid">
+            <div class="method-copy">
+              <h3>Prototype-based, attention-aware classification</h3>
+              <p>Each representation is compared with learned prototypes for non-fraud and fraud. Attention weights determine which latent dimensions matter most for the distance calculation.</p>
+              <div class="bullets">
+                <div class="bullet"><div class="check">✓</div><div><b>Prototype anchoring</b><span>Encourages class prototypes to align with latent cluster centroids.</span></div></div>
+                <div class="bullet"><div class="check">✓</div><div><b>Feature-wise attention</b><span>Weights latent dimensions according to their contribution to discrimination.</span></div></div>
+                <div class="bullet"><div class="check">✓</div><div><b>Joint encoder supervision</b><span>Classification gradients flow back to the encoder, explicitly promoting class separation.</span></div></div>
+              </div>
+            </div>
+            <figure class="figure-card zoomable-figure" aria-label="VAE-GAN plus CPAC pipeline diagram" tabindex="0">
+              <span class="hover-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path><path d="M11 8v6"></path><path d="M8 11h6"></path></svg> Hover to zoom</span>
+              <img src="assets/pipeline-vaegan-cpac.png" alt="Infographic of the VAE-GAN plus CPAC pipeline showing encoder, latent space, generator, discriminator, CPAC head, and improved latent separation.">
+              <div class="zoom-preview" aria-hidden="true">
+                <img src="assets/pipeline-vaegan-cpac.png" alt="">
+              </div>
+              <figcaption>Overview of the proposed VAE-GAN + CPAC pipeline: a shared encoder feeds both the generative path and the CPAC classification head, so latent representations are shaped through prototype anchoring and attention-guided supervision.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="method-shell reveal">
+          <div class="method-grid">
+            <div class="figure-card" style="min-height:310px; display:grid; place-items:center; text-align:center;">
+              <div style="max-width:420px;">
+                <div style="font-size:64px; line-height:1; margin-bottom:16px;">≠</div>
+                <h3 style="margin:0 0 10px; font-size:25px;">Realistic synthesis is not sufficient</h3>
+                <p style="margin:0; color:var(--muted);">The core question is not only whether generated frauds look plausible, but whether the learned representation makes fraud and non-fraud easier to separate.</p>
+              </div>
+            </div>
+            <div class="method-copy">
+              <div class="kicker">Why latent shaping?</div>
+              <h3>Generation quality is not enough.</h3>
+              <p>Traditional minority-only oversampling optimizes for plausible fraud samples. Our pipeline adds a discriminative objective: the shared encoder also learns from class labels across the full dataset.</p>
+              <p>This turns the classifier from a downstream consumer into a training signal that actively organizes the latent manifold.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Results</div>
+          <h2 class="section-title">Better separation. Strong real-test performance.</h2>
+          <p class="section-lede">With pre-training oversampling and VAE-GAN+CPAC, XGBoost reaches the paper's headline result on the held-out test set.</p>
+        </div>
+
+        <div class="metric-row reveal">
+          <div class="metric-card"><strong>94.67%</strong><span>Precision</span></div>
+          <div class="metric-card highlight"><strong>92.85%</strong><span>Recall</span></div>
+          <div class="metric-card highlight"><strong>93.74%</strong><span>F1-score</span></div>
+          <div class="metric-card"><strong>98.47%</strong><span>AUC-ROC</span></div>
+        </div>
+        <div class="result-note">XGBoost · VAE-GAN+CPAC · pre-training oversampling · 100 synthetic fraud samples.</div>
+
+        <div class="results-grid">
+          <article class="result-figure reveal">
+            <img src="assets/cluster-main-dataset.png" alt="2D latent-space visualization for the main dataset, showing normal and fraud samples together with the learned prototypes.">
+            <p>Main dataset: 2D latent-space view of VAE-GAN + CPAC with prototypes, showing the separation between normal and fraud samples in the learned representation.</p>
+          </article>
+          <article class="result-figure reveal">
+            <img src="assets/cluster-sparkov-dataset.png" alt="2D latent-space visualization for the Sparkov dataset, showing normal and fraud samples together with the learned prototypes.">
+            <p>Sparkov dataset: latent-space visualization with learned prototypes, showing a clean diagonal structure and strong class organization in the synthetic benchmark setting.</p>
+          </article>
+        </div>
+
+        <div class="table-card reveal">
+          <table aria-label="Selected benchmark results">
+            <thead><tr><th>Setup</th><th>Model</th><th>Precision</th><th>Recall</th><th>F1</th><th>AUC-ROC</th></tr></thead>
+            <tbody>
+              <tr><td>No oversampling</td><td>XGBoost</td><td>95.44%</td><td>90.81%</td><td>93.00%</td><td>98.14%</td></tr>
+              <tr><td>VAE-GAN+CPAC · 50</td><td>XGBoost</td><td>94.55%</td><td>91.83%</td><td>93.15%</td><td>98.49%</td></tr>
+              <tr><td>Pre-training + VAE-GAN+CPAC · 100</td><td>XGBoost</td><td>94.67%</td><td class="best">92.85%</td><td class="best">93.74%</td><td>98.47%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="takeaway reveal">
+          <div class="takeaway-quote">More synthetic frauds <em>≠</em> better fraud detection.</div>
+          <div class="takeaway-copy">
+            <div class="kicker">Key takeaway</div>
+            <p>The experiments show why minority-only augmentation should not be treated as the whole solution. Excessive oversampling can plateau or overfit, while synthetic samples that look plausible may still come from an insufficiently discriminative latent representation.</p>
+            <p>CPAC instead promotes class-aware latent structure through supervised feedback, prototypes and attention, combining augmentation with representation learning and interpretability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="citation">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="kicker">Paper & citation</div>
+          <h2 class="section-title">Read, reproduce, cite.</h2>
+          <p class="section-lede">The codebase is publicly available and the article is published in Knowledge-Based Systems, volume 350 (2026), article 116594.</p>
+        </div>
+        <div class="actions" style="justify-content:flex-start; margin:0 0 20px;">
+          <a class="btn accent" href="https://www.sciencedirect.com/science/article/pii/S0950705126013201?via%3Dihub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5"/><path d="M8.5 16.5h7M8.5 13h7"/></svg> Open paper</a>
+          <a class="btn" href="https://doi.org/10.1016/j.knosys.2026.116594" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M8.5 15.5l7-7"/><path d="M9.5 7.5l-2-2a3 3 0 00-4.2 4.2l2 2M14.5 16.5l2 2a3 3 0 004.2-4.2l-2-2"/></svg> View DOI</a>
+          <a class="btn primary" href="https://github.com/claudiunderthehood/VAEGAN-CPAC" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.41-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.18a10.99 10.99 0 015.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.4-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.17v3.22c0 .31.21.67.8.56A11.5 11.5 0 0012 .7z"/></svg> Source code</a>
+        </div>
+        <div class="citation-box reveal">
+          <div class="citation-top"><strong>BibTeX</strong><button class="copy-btn" id="copyBib">Copy citation</button></div>
+          <pre id="bibtex">@article{giusti2026fraud,
+  title   = {Fraud is not just rarity: A causal prototype attention approach to realistic synthetic oversampling},
+  author  = {Giusti, Claudio and Guarnera, Luca and Casu, Mirko and Battiato, Sebastiano},
+  journal = {Knowledge-Based Systems},
+  volume  = {350},
+  pages   = {116594},
+  year    = {2026},
+  doi     = {10.1016/j.knosys.2026.116594}
+}</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-copy">
+        <span>VAEGAN + CPAC · Research project page</span>
+        <span>Knowledge-Based Systems, 2026</span>
+      </div>
+      <div class="lab-links" aria-label="Affiliations and labs">
+        <a class="lab-logo-link" href="https://www.unict.it/" target="_blank" rel="noopener">
+          <img src="https://www.brand.unict.it/unict-logo.webp" alt="University of Catania logo" onerror="this.style.display='none'">
+          <span class="lab-text"><strong>UniCT</strong><span>University of Catania</span></span>
+        </a>
+        <a class="lab-logo-link" href="https://iplab.dmi.unict.it/" target="_blank" rel="noopener">
+          <img src="https://iplab.dmi.unict.it/authors/admin/avatar_hu16210622194046893021.png" alt="IPLab logo" onerror="this.style.display='none'">
+          <span class="lab-text"><strong>IPLab</strong><span>Image Processing Laboratory</span></span>
+        </a>
+        <a class="lab-logo-link" href="https://iplab.dmi.unict.it/mfs/" target="_blank" rel="noopener">
+          <img src="https://iplab.dmi.unict.it/mfs/LOGOMFS_full.png" alt="IPLab logo" onerror="this.style.display='none'">
+          <span class="lab-text"><strong>MFSLab</strong><span>Multimedia Security & Forensics Lab</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const copyBtn = document.getElementById('copyBib');
+    copyBtn.addEventListener('click', async () => {
+      const text = document.getElementById('bibtex').innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = old, 1400);
+      } catch (_) {
+        copyBtn.textContent = 'Select & copy';
+      }
+    });
+  </script>
+</body>
+</html>
